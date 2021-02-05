@@ -37,7 +37,7 @@ First, if you've never set up a KDS root key, you'll want to run this command fr
 Add-KDSRootKey -EffectiveImmediately
 ```
 
-Note, effective immediately means it's added immediately but not ready immediately (it always waits for replication). Per the [documentation](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key) you can run this instead to make it really effective immediately:
+Note, effective immediately means it's ready in 10 hours because, why not. Per the [documentation](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key) you can run this instead to make it really effective immediately:
 
 ``` powershell
 Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))
