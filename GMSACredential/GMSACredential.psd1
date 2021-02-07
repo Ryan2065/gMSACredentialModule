@@ -12,7 +12,7 @@
 RootModule = '.\GMSACredential.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.5'
+ModuleVersion = '0.6'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -54,7 +54,7 @@ Description = 'Provides functions to get a usable PSCredential for a GMSA accoun
 # RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
-# RequiredAssemblies = @()
+#RequiredAssemblies = @('.\refs\System.Security.Principal.Windows.dll','.\refs\SimpleImpersonation.dll')
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
 # ScriptsToProcess = @()
@@ -69,7 +69,7 @@ Description = 'Provides functions to get a usable PSCredential for a GMSA accoun
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Get-GMSACredential')
+FunctionsToExport = @('Get-GMSACredential','Invoke-GMSACommand')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -107,7 +107,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        # ReleaseNotes = ''
+         ReleaseNotes = 'Added Invoke-GMSACommand'
 
     } # End of PSData hashtable
 
