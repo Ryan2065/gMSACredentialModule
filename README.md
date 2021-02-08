@@ -27,33 +27,4 @@ The above command outputs ```home\gmsatest$``` to prove it is working. gMSA's ge
 
 There's not much to this, the only gotcha is you need to run this as an account with permissions to get the gMSA password
 
-### Setting up gMSAs in the lab
-
-If you want to try this out in your lab, it's real easy to get gMSAs up and running!
-
-First, if you've never set up a KDS root key, you'll want to run this command from a Domain Administrator:
-
-``` powershell
-Add-KDSRootKey -EffectiveImmediately
-```
-
-Note, effective immediately means it's ready in 10 hours because, why not. Per the [documentation](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key) you can run this instead to make it really effective immediately:
-
-``` powershell
-Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))
-```
-
-Generally at work we give an AD group permissions to get our passwords and then we can add or remove accounts. So in the lab, since everything's a Domain Admin, let's use that!
-
-Create your account and give Domain Admins permissions to get the password (feel free to change this to any AD group you want):
-
-``` powershell
-$ADGroupName = 'Domain Admins'
-$GMSAName = 'gMSATest'
-$DomainFqdn = 'home.lab'
-$ServiceAccount = New-ADServiceAccount -Name 'gMSATest' -DNSHostName "$GMSAName.$($DomainFqdn)" -PrincipalsAllowedToRetrieveManagedPassword $ADGroupName -Enabled $true -PassThru
-```
-
-Now you'll have the account "gMSATest$" available to use! Give the account permissions to whatever you want to access, then use it in your scripts with ```Get-GMSACredential```
-
-Please let me know if you have any issues!
+If you want a more in-depth guide including how to set up your environment for gMSAs, please [look at the wiki](https://github.com/Ryan2065/gMSACredentialModule/wiki/PasswordlessPowerShell) - there's a great guide on Passwordless PowerShell.
